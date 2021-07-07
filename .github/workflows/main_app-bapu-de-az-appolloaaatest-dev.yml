@@ -37,7 +37,7 @@ jobs:
     needs: build
     environment:
       name: 'production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}      
 
     steps:
     - name: Download artifact from build job
@@ -50,6 +50,7 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'app-bapu-de-az-appolloaaatest-dev'
+        working-directory: ./complete
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_14af6b02867b48ab9643cbee4a8c9552 }}
         package: '*.jar'
