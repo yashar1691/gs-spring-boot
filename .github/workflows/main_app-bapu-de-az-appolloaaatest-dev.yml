@@ -28,9 +28,9 @@ jobs:
     - name: Upload artifact for deployment job      
       uses: actions/upload-artifact@v2
       with:
-        working-directory: ./complete
         name: java-app
-        path: '${{ github.workspace }}/target/*.jar'
+#        path: '${{ github.workspace }}/target/*.jar'
+        path: ./complete/target/*.jar'
 
   deploy:
     runs-on: ubuntu-latest
