@@ -22,12 +22,14 @@ jobs:
         java-version: '11'
 
     - name: Build with Maven
+      working-directory: ./complete
       run: mvn clean install
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
       with:
         name: java-app
+        working-directory: ./complete
         path: '${{ github.workspace }}/target/*.jar'
 
   deploy:
@@ -42,12 +44,14 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: java-app
+        working-directory: ./complete
 
     - name: Deploy to Azure Web App
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'app-bapu-de-az-appolloaaatest-dev'
+        working-directory: ./complete
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_d5c95be44cc44d158f1d5b2bc8a45a44 }}
         package: '*.jar'
