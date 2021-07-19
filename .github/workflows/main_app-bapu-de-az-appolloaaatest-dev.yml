@@ -30,7 +30,7 @@ jobs:
       with:
         name: java-app
         working-directory: ./complete
-        path: '${{ github.workspace }}/target/*.jar'
+        path: './complete/target/*.jar'
 
   deploy:
     runs-on: ubuntu-latest
